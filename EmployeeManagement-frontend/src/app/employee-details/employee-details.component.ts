@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Employee } from '../employee';
 import { ActivatedRoute } from '@angular/router';
 import { EmployeeService } from '../employee.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-employee-details',
   templateUrl: './employee-details.component.html',
@@ -12,7 +12,7 @@ export class EmployeeDetailsComponent implements OnInit {
 
   id!: number;
   employee!: Employee;
-  constructor(private route: ActivatedRoute, private employeService: EmployeeService) { }
+  constructor(private route: ActivatedRoute, private employeService: EmployeeService ,private router:Router) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -22,6 +22,8 @@ export class EmployeeDetailsComponent implements OnInit {
       this.employee = data;
     });
   }
-
+   backToEmployeeList(){
+    this.router.navigate(['employees']);
+   }
 }
 
